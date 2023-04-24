@@ -7,7 +7,7 @@ import Form from 'react-bootstrap/Form';
 import Table from 'react-bootstrap/Table';
 
 
-const FormApp = () => {
+const CrudPhase1 = () => {
   const [formData, setformData] = useState({
     fname: "",
     email: "",
@@ -284,4 +284,4 @@ const FormApp = () => {
   )
 }
 
-export default FormApp
+export default CrudPhase1
