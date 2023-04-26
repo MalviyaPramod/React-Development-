@@ -5,7 +5,7 @@ import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Table from 'react-bootstrap/Table';
-
+import Container from 'react-bootstrap/Container';
 
 const CrudPhase1 = () => {
   const [formData, setformData] = useState({
@@ -14,27 +14,36 @@ const CrudPhase1 = () => {
     phone: "",
     foods: []
   })
+
   const [formError, setformError] = useState({});
   const [getAPIData, setGetApiData] = useState([]);
 
+  // 2
+  // .push({ name: "new name" });
+
   const[isEdit, setIsEdit] = useState(false);
-
   var foodItem = ['panner', 'daal', 'roti'];
-
   const inputEventHandle = (event) => {
     const { name, value } = event.target;
-
     if(event.target.name === 'foods'){
+
       let olddata = {...formData}
 
       if(event.target.checked){
         olddata.foods.push(event.target.value);
       }else{
-        olddata.foods = olddata.foods.filter(el => el !== event.target.value);
-      }
-      
-      setformData(olddata);
 
+        //--Delete Item Filter methods
+          // olddata.foods = olddata.foods.filter(el => el !== event.target.value);
+        
+
+        //Delete Item Splice methods
+        let index = olddata.foods.indexOf(event.target.value);
+        // if(index !== -1){olddata.foods.splice(index, 1);}
+        index !== -1 ? olddata.foods.splice(index, 1) : null;
+
+      }
+      setformData(olddata);
     }else{
       setformData((prevl)=>{
         return {
@@ -44,7 +53,6 @@ const CrudPhase1 = () => {
       })
     }
   }
-
 
   const validationFormData = (event) => {
     let err = {};
@@ -84,23 +92,28 @@ const CrudPhase1 = () => {
         updateFormData(formData.id);
       }else{
         sendFormData();
-        alert("Form Submit!")
+        alert("Form Submit!");
       }
     } else {
       alert("Form In-valid!")
     }
-
+    
+    
     console.log("Form Submit !", formData);
   }
  
    /*========SEND DATA FORM API=========*/
-  const sendFormData = () =>{
-    return(
-      axios.post("https://643133313adb159651675889.mockapi.io/crud/form", formData)
-      .then((response) => setformData(response.data))
-    )
-    
+  const sendFormData = async () =>{
+     await axios.post("https://643133313adb159651675889.mockapi.io/crud/form", formData);
+     getFormData()
+     
+     setformData({ fname: "",
+     email: "",
+     phone: "",
+     foods: []
+    })
   }
+
 
   /*========GET DATA FORM API=========*/
   const getFormData = () => {
@@ -114,13 +127,13 @@ const CrudPhase1 = () => {
     axios.put(`https://643133313adb159651675889.mockapi.io/crud/form/${id}`, formData)
     alert('Update Fome Data!');
   }
+
   /*========DELETE DATA FORM API=========*/
   const deleteFormData = (id) =>{
     console.log(id);
     axios.delete(`https://643133313adb159651675889.mockapi.io/crud/form/${id}`).then(()=>{
       getFormData();
     })
-    alert('Data Delete!');
   }
 
    
@@ -143,21 +156,6 @@ const CrudPhase1 = () => {
 
   
     setIsEdit(true);
-
-    // alert(id);
-    //   axios.put(`https://643133313adb159651675889.mockapi.io/crud/crud-system/${id}`,
-  //     {
-  //       id:id,
-  //       fname: fname,
-  //       email: email,
-  //       phone: phone,
-  //       foods: foods
-  //     }
-  //   )
-  //  .then((res)=>{
-  //   console.log(res.data);
-  //  })
-
   }
   
 
@@ -168,8 +166,9 @@ const CrudPhase1 = () => {
   return (
     <>
       <h1 className='text-center mt-3 mb-3'>Fill The Fileds</h1>
+      <Container>
       <Row className='justify-content-center'>
-        <Col md="8">
+        <Col md="5">
 
           <Form onSubmit={onSubmitHandler}>
             <Row>
@@ -240,9 +239,9 @@ const CrudPhase1 = () => {
               </Button>
             </Row>
           </Form>
-
-          <hr />
-          <Table striped hover variant="dark">
+        </Col>
+        <Col md="6">
+        <Table striped hover variant="dark">
             <thead>
               <tr>
                 <th>S. No.</th>
@@ -280,6 +279,8 @@ const CrudPhase1 = () => {
           </Table>
         </Col>
       </Row>
+      </Container>
+      
     </>
   )
 }
