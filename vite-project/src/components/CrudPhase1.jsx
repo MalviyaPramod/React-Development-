@@ -18,8 +18,8 @@ const CrudPhase1 = () => {
   const [formError, setformError] = useState({});
   const [getAPIData, setGetApiData] = useState([]);
 
-  // 2
-  // .push({ name: "new name" });
+  // 2 1
+  // .push({ name: "new name" }) ;
 
   const[isEdit, setIsEdit] = useState(false);
   var foodItem = ['panner', 'daal', 'roti'];
