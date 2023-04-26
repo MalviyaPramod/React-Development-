@@ -18,7 +18,7 @@ const CrudPhase1 = () => {
   const [formError, setformError] = useState({});
   const [getAPIData, setGetApiData] = useState([]);
 
-  // 2 1
+  // 2 
   // .push({ name: "new name" }) ;
 
   const[isEdit, setIsEdit] = useState(false);
