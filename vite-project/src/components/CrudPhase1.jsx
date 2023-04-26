@@ -78,7 +78,6 @@ const CrudPhase1 = () => {
       err.foods = 'Any One Chooess';
     }
     setformError({ ...err });
-
     // TODO: need to study how to work
     return Object.keys(err).length < 1;
   }
