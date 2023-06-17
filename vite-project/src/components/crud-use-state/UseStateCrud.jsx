@@ -153,8 +153,6 @@ const UseStateCrud = () => {
       phone: phone,
       foods: foods
     });
-
-
     setIsEdit(true);
   }
 

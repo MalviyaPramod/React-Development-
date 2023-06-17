@@ -14,7 +14,11 @@ import {
   UseReducerCrud_2, 
   UseReducerCrud_3, 
   UseReducer_Search_4 
-} from './components/crud-use-reducer';
+} from './components/crud-use-reducer-baisc';
+
+import { 
+  UseReducerCrudAdvance 
+} from './components/curd-use-reducer-advance';
 
 const App = () => (
   <BrowserRouter>
@@ -31,9 +35,13 @@ const App = () => (
               <Link to="/use-reducer-crud-3" className='nav-link'>UseReducer 3</Link>
               <Link to="/use-reducer-search-4" className='nav-link'>UseReducer Search 4</Link>
             </NavDropdown>
-
+            <NavDropdown title="UR Crud Advance" id="basic-nav-dropdown">
+              <Link to="/ur-advance" className='nav-link'>UR Advance</Link>
+              
+            </NavDropdown>
             <Link to="/increment-decrement" className='nav-link'>Inc-des</Link>
           </Nav>
+          
         </Navbar.Collapse>
       </Container>
     </Navbar>
@@ -45,6 +53,7 @@ const App = () => (
       <Route path="/use-reducer-crud-2" element={<UseReducerCrud_2 />}></Route>
       <Route path="/use-reducer-crud-3" element={<UseReducerCrud_3 />}></Route>
       <Route path="/use-reducer-search-4" element={<UseReducer_Search_4/>}></Route>
+      <Route path="/ur-advance" element={<UseReducerCrudAdvance />}></Route>
     </Routes>
   </BrowserRouter>
 

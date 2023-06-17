@@ -144,7 +144,7 @@ const UseReducer_Search_4 = () => {
         })
     }
 
-    /* Search Items In list*/
+    /* Search Items In list UseState : [filteredList, setFilteredList]*/
     const filterBySearch = (event) => {
         const result = event.target.value;
         setFilteredList(result)
@@ -159,6 +159,7 @@ const UseReducer_Search_4 = () => {
         })
         setFilteredList(searchItems) 
     }
+    
     useEffect(() => {
         getData();
     }, [])
