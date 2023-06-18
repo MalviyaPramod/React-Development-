@@ -31,14 +31,13 @@ const intiValue = {
 }
 
 const UseReducerCrudAdvance = () => {
-
     const [FirstState, setFirstState] = useState(intiValue)
-    
-    const addApiHandle = () => {
-        const { getApiDataStore, ...initItems } = FirstState;
-        Axios.post(`https://643133313adb159651675889.mockapi.io/crud/crud-system`, initItems)
+
+    const addApiHandle = (data) => {
+        Axios.post(`https://643133313adb159651675889.mockapi.io/crud/crud-system`, data)
             .then((response) => {
                 console.log(response.data)
+                getApiDataStore();
             }).catch((error) => {
                 console.log(error)
             })
@@ -58,22 +57,6 @@ const UseReducerCrudAdvance = () => {
             })
     }
 
-    
-    const getFormInputData = (event) => {
-        setFirstState(event)
-    }
-    
-     /*
-      Ye use effect tab tab chalega jab jab  first state update hoga
-     */ 
-    useEffect(() => {
-        if ((FirstState.name === "") && (FirstState.email === "")) {
-            console.log("Sorry Please Fill Input Details!")
-        } else {
-            addApiHandle()
-        }
-    }, [FirstState])
-
     useEffect(() => {
         getApiDataStore()
     }, [])
@@ -89,10 +72,7 @@ const UseReducerCrudAdvance = () => {
                         <FormFile
                             /*Send Input Attribute value to FormFile*/
                             sendInputHandle={inputAttribute}
-                            /*Get Data For Child*/
-                            getInputHandle={getFormInputData}
-                            /*Pass getapi function to submit for load data*/
-                            getApifunctionPass = {getApiDataStore}
+                            onSubmit={addApiHandle}
                         />
                     </Col>
                     <Col md={7}>

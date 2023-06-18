@@ -10,24 +10,24 @@ const FormFile = (props) => {
     const inputHandle = (event) => {
         const result = event.target;
         const {name, value} = result;
-        
+
         setInputData(()=>{
             return{
                 ...inputData,
                 [name]:value
             }
         })
-    } 
-
-    const submitHandle = (e) => {
-        e.preventDefault()
-        props.getInputHandle(inputData)
-        setInputData(intVal)
-        props.getApifunctionPass()
-        console.log("Data Submit SuccesFully!")
-        
     }
-   
+
+    const submitHandle = async (e) => {
+        e.preventDefault()
+        // props.getInputHandle(inputData);
+        await props.onSubmit(inputData);
+        setInputData(intVal)
+        // await props.getApifunctionPass();
+        console.log("Data Submit SuccesFully!")
+    }
+
     return (
         <>
             <Form onSubmit={submitHandle} className='mb-5'>
