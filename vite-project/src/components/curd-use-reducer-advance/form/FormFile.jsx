@@ -28,7 +28,12 @@ const FormFile = (props) => {
         console.log("Data Submit SuccesFully!")
     }
 
-    {()=>setInputData(props.passEditData)}
+    const result = props.passEditData;
+        const {name, email} = result;
+         console.log(name)
+         console.log(email)
+         
+    // {()=>setInputData(props.passEditData)}
     // useEffect(()=>{
     //     const result = props.passEditData;
     //     const {name, email} = result;
