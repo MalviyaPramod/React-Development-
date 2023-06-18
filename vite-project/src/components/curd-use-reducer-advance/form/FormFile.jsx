@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 const intVal = {
@@ -18,7 +18,9 @@ const FormFile = (props) => {
             }
         })
     }
-
+ 
+        
+    
     const submitHandle = async (e) => {
         e.preventDefault()
         await props.onSubmit(inputData);
@@ -26,14 +28,30 @@ const FormFile = (props) => {
         console.log("Data Submit SuccesFully!")
     }
 
+    {()=>setInputData(props.passEditData)}
+    // useEffect(()=>{
+    //     const result = props.passEditData;
+    //     const {name, email} = result;
+    //     console.log(name)
+    //     console.log(email)
+    //     {()=>{
+    //         setInputData({
+    //             ...inputData,
+    //             result
+    //         })
+    //     }}
+    // },[inputData])
+
+    console.log(inputData)
     return (
         <>
             <Form onSubmit={submitHandle} className='mb-5'>
                 {
-                    props.sendInputHandle.map((element) => {
+                    props.sendInputHandle.map((element, index) => {
                         return (
                             <>
-                                <Form.Group className="mb-3" key={element.id}>
+
+                                <Form.Group className="mb-3" key={index}>
                                     <Form.Label>{element.label}</Form.Label>
                                     <Form.Control
                                         type={element.type}

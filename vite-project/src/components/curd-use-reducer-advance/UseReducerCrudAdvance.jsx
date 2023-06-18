@@ -32,6 +32,7 @@ const intiValue = {
 
 const UseReducerCrudAdvance = () => {
     const [FirstState, setFirstState] = useState(intiValue)
+    const [editData, setEditData] = useState({})
 
     const addApiHandle = (data) => {
         Axios.post(`https://643133313adb159651675889.mockapi.io/crud/crud-system`, data)
@@ -57,10 +58,17 @@ const UseReducerCrudAdvance = () => {
             })
     }
 
+    const EditHandle = (data) =>{
+        setEditData(data)
+       
+    }
+
     useEffect(() => {
         getApiDataStore()
     }, [])
+
     console.log(FirstState)
+    console.log(editData)
     return (
         <>
             <Container>
@@ -69,13 +77,16 @@ const UseReducerCrudAdvance = () => {
                 <Row>
                     <Col md={5}>
                         <FormFile
-                            /*Send Input Attribute value to FormFile*/
                             sendInputHandle={inputAttribute}
                             onSubmit={addApiHandle}
+                            passEditData = {editData}
                         />
                     </Col>
                     <Col md={7}>
-                        <TableFile sendApiStoreData = {FirstState.getApiDataStoreArr}/>
+                        <TableFile 
+                            sendApiStoreData = {FirstState.getApiDataStoreArr}
+                            getEditHandle ={EditHandle}
+                        />
                     </Col>
                 </Row>
             </Container>

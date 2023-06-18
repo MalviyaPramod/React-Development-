@@ -17,14 +17,17 @@ const TableFile = (props) => {
         </thead>
         <tbody>
           {
-            data.map((element, index) => {
+            data && data.map((element, index) => {
               return (
-                <tr>
+                <tr key={index}>
                   <td>{element.id}</td>
                   <td>{element.name}</td>
                   <td>{element.email}</td>
                   <td>
-                    <button className='btn btn-primary'>Edit</button>|
+                    <button 
+                        className='btn btn-primary' 
+                        onClick={()=>{props.getEditHandle(element)}}
+                    >Edit</button> | 
                     <button className='btn btn-success'>Delete</button>
                   </td>
                 </tr>
