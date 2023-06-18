@@ -29,10 +29,9 @@ const FormFile = (props) => {
     }
 
     const result = props.passEditData;
-        const {name, email} = result;
+         const {name, email} = result;
          console.log(name)
-         console.log(email)
-         
+         console.log(email) 
     // {()=>setInputData(props.passEditData)}
     // useEffect(()=>{
     //     const result = props.passEditData;

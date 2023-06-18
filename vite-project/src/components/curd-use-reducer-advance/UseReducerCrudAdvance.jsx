@@ -57,7 +57,6 @@ const UseReducerCrudAdvance = () => {
                 console.log(error)
             })
     }
-
     const EditHandle = (data) =>{
         setEditData(data)
        
