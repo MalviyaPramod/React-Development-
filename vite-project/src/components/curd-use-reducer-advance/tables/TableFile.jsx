@@ -7,6 +7,7 @@ const TableFile = (props) => {
     <>
       <Table striped bordered hover>
         <thead>
+          
           <tr>
             <th>Id</th>
             <th>First Name</th>

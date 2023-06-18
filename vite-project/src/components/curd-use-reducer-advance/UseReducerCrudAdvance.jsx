@@ -60,7 +60,6 @@ const UseReducerCrudAdvance = () => {
     useEffect(() => {
         getApiDataStore()
     }, [])
-
     console.log(FirstState)
     return (
         <>
