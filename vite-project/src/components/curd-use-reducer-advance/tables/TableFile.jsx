@@ -28,7 +28,7 @@ const TableFile = (props) => {
                         className='btn btn-primary' 
                         onClick={()=>{props.getEditHandle(element)}}
                     >Edit</button> | 
-                    <button className='btn btn-success'>Delete</button>
+                    <button className='btn btn-success' onClick={()=>{props.deleteHandle(element.id)}}>Delete</button>
                   </td>
                 </tr>
               )

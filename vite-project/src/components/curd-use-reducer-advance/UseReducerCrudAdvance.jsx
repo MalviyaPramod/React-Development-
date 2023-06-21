@@ -57,10 +57,34 @@ const UseReducerCrudAdvance = () => {
                 console.log(error)
             })
     }
+    
     const EditHandle = (data) =>{
         setEditData(data)
-       
     }
+
+    const updateHandle = (data) =>{
+        console.log(data)
+        Axios.put(`https://643133313adb159651675889.mockapi.io/crud/crud-system/${data.id}`, data).
+        then((response)=>{
+            console.log(response.data)
+            getApiDataStore();
+            setEditData({})
+        }).catch((error)=>{
+            console.log(error)
+        })
+    }
+    
+    const deleteHandle = (id) =>{
+        
+        Axios.delete(`https://643133313adb159651675889.mockapi.io/crud/crud-system/${id}`)
+        .then((response)=>{
+            console.log(response.data)
+            getApiDataStore()
+        }).catch((error)=>{
+            console.log(error)
+        })
+    }
+   
 
     useEffect(() => {
         getApiDataStore()
@@ -79,12 +103,14 @@ const UseReducerCrudAdvance = () => {
                             sendInputHandle={inputAttribute}
                             onSubmit={addApiHandle}
                             passEditData = {editData}
+                            UpdateHadnle= {updateHandle}
                         />
                     </Col>
                     <Col md={7}>
                         <TableFile 
                             sendApiStoreData = {FirstState.getApiDataStoreArr}
                             getEditHandle ={EditHandle}
+                            deleteHandle = {deleteHandle}
                         />
                     </Col>
                 </Row>

@@ -7,6 +7,8 @@ const intVal = {
 }
 const FormFile = (props) => {
     const [inputData, setInputData] = useState(intVal);
+  
+
     const inputHandle = (event) => {
         const result = event.target;
         const {name, value} = result;
@@ -18,33 +20,23 @@ const FormFile = (props) => {
             }
         })
     }
- 
-        
     
     const submitHandle = async (e) => {
         e.preventDefault()
-        await props.onSubmit(inputData);
-        setInputData(intVal)
+        if(Object.keys(props.passEditData).length === 0){
+             await props.onSubmit(inputData);
+         }else{
+             props.UpdateHadnle(inputData) 
+        }
+        setInputData(intVal) 
         console.log("Data Submit SuccesFully!")
     }
-
-    const result = props.passEditData;
-         const {name, email} = result;
-         console.log(name)
-         console.log(email) 
-    // {()=>setInputData(props.passEditData)}
-    // useEffect(()=>{
-    //     const result = props.passEditData;
-    //     const {name, email} = result;
-    //     console.log(name)
-    //     console.log(email)
-    //     {()=>{
-    //         setInputData({
-    //             ...inputData,
-    //             result
-    //         })
-    //     }}
-    // },[inputData])
+   
+    useEffect(()=>{
+        const result = props.passEditData;
+        console.log(result)
+        setInputData(result)
+    },[props.passEditData])
 
     console.log(inputData)
     return (
